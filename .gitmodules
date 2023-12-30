@@ -1,0 +1,3 @@
+[submodule "FastAPI_AWS_Backend"]
+	path = FastAPI_AWS_Backend
+	url = https://github.com/TeamRenegan/FastAPI_AWS_Backend.git
