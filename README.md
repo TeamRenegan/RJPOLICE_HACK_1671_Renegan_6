@@ -12,8 +12,8 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
-- [Acknowledgments](#acknowledgments)
 - [Figma Prototype](#figma-prototype)
+- [Acknowledgments](#acknowledgments)
 ---
 
 ## Introduction 
@@ -72,11 +72,6 @@ Stay tuned for updates, and let's build a safer world together!
   - YOLO (You Only Look Once) for real-time object detection
   - Real Time Streaming Protocol (RTSP)
 
----
-
-## Acknowledgments
-
-Special thanks to Rajasthan Police for giving us the opportunity to work on such project.
 
 ---
 
@@ -103,3 +98,9 @@ Special thanks to Rajasthan Police for giving us the opportunity to work on such
 |---|---|---|
 | ![image](https://github.com/TeamRenegan/Frontend/assets/104688406/3fb6e8d3-10db-4848-8100-1b9820ff945e) | ![image](https://github.com/TeamRenegan/Frontend/assets/104688406/b54878fd-6a80-4995-ba86-e3a73bfaafc7) |  |
 
+
+---
+
+## Acknowledgments
+
+Special thanks to Rajasthan Police for giving us the opportunity to work on such project.
