@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Camera Registration - Verification Required</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #3498db;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 30px;
+      color: #95a5a6;
+    }
+
+    a {
+      color: #3498db;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>New Camera Registration - Verification Required</h1>
+  <p>A new camera has been registered and is pending verification. Please review the details below:</p>
+
+  <p>Camera ID: {{cameraId}}</p>
+  <p>Camera Owner: {{cameraOwnerName}}</p>
+  <p>Message: {{message}}</p>
+
+  <p>Click the link below to view details and verify:</p>
+  <a href="{{verificationLink}}">Verify Camera</a>
+
+  <div class="footer">
+    <p>For any queries, please contact us at <a href="mailto:teamrenegan@gmail.com">teamrenegan@gmail.com</a></p>
+  </div>
+</body>
+
+</html>
