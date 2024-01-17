@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.hritikasapplication" "\0"
-            VALUE "FileDescription", "main" "\0"
+            VALUE "CompanyName", "com.example" "\0"
+            VALUE "FileDescription", "vid_player" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "main" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.hritikasapplication. All rights reserved." "\0"
-            VALUE "OriginalFilename", "main.exe" "\0"
-            VALUE "ProductName", "main" "\0"
+            VALUE "InternalName", "vid_player" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
+            VALUE "OriginalFilename", "vid_player.exe" "\0"
+            VALUE "ProductName", "vid_player" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
