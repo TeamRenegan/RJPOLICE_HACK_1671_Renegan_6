@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart';
-import 'core/app_export.dart';
 
-var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+import 'camera_maps.dart';
 
-  ///Please update theme as per your need if required.
-  ThemeHelper().changeTheme('primary');
-  runApp(MyApp());
+Future<void> main() async {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-      builder: (context, orientation, deviceType) {
-        return MaterialApp(
-          theme: theme,
-          title: 'hritika_s_application7',
-          debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.policeMapScreen,
-          routes: AppRoutes.routes,
-        );
-      },
+    return MaterialApp(
+      title: 'Geotagged Cameras Map',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Geotagged Cameras Map',
+            style: TextStyle(fontWeight: FontWeight.w500),
+          ),
+          centerTitle: false,
+        ),
+        body: const CameraMaps(),
+      ),
     );
   }
 }
