@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:renegan/video_player.dart';
 import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
 
@@ -44,14 +45,14 @@ class _CameraDetailsState extends State<CameraDetails> {
   ];
 
   Map<String, dynamic>? ownerDetails;
-  late List<Map<String, dynamic>> cameraDetailsList;
+  // late List<Map<String, dynamic>> cameraDetailsList;
 
   @override
   void initState() {
     ownerDetails = null;
-    cameraDetailsList = [];
-    fetchOwnerDetails('65a7aee8174a407b75b11a12');
-    fetchCameraDetails();
+    // cameraDetailsList = [];
+    fetchOwnerDetails('65a6bbea7b5639c230d50487');
+    // fetchCameraDetails();
     super.initState();
   }
 
@@ -74,21 +75,21 @@ class _CameraDetailsState extends State<CameraDetails> {
     }
   }
 
-  Future<void> fetchCameraDetails() async {
-    try {
-      final response = await http.get(Uri.parse('$cameraDetailsUrl:id'));
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        setState(() {
-          cameraDetailsList = [data];
-        });
-      } else {
-        throw Exception('Failed to load camera details');
-      }
-    } catch (error) {
-      print(error);
-    }
-  }
+  // Future<void> fetchCameraDetails() async {
+  //   try {
+  //     final response = await http.get(Uri.parse('$cameraDetailsUrl:id'));
+  //     if (response.statusCode == 200) {
+  //       final data = json.decode(response.body);
+  //       setState(() {
+  //         cameraDetailsList = [data];
+  //       });
+  //     } else {
+  //       throw Exception('Failed to load camera details');
+  //     }
+  //   } catch (error) {
+  //     print(error);
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -115,24 +116,35 @@ class _CameraDetailsState extends State<CameraDetails> {
                 _buildOwnerDetails(ownerDetails!),
                 const Divider(),
               ] else
-                _buildDefaultOwnerDetails(),
+                Container(
+                  width: 50,
+                  height: 50,
+                  child: const AspectRatio(
+                    aspectRatio: 1,
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
 
               // Camera Details
               _buildSectionTitle('Camera Details'),
-              if (cameraDetailsList.isNotEmpty) ...[
-                for (final camera in cameraDetailsList)
+              if (ownerDetails != null) ...[
+                for (final camera in ownerDetails!['cameras'])
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       _buildCameraDetails(camera),
                       const SizedBox(height: 16.0),
-                      _buildButtonsRow(camera['video_url'] ??
-                          dummyCameraDetailsList[0]['video_url']),
+                      _buildButtonsRow(camera['rtspUrl'] ??
+                          dummyCameraDetailsList[0]['rtspUrl']),
                       const Divider(),
                     ],
                   ),
               ] else
-                _buildDefaultCameraDetails(),
+                Container(
+                  height: 50,
+                  width: 50,
+                  child: const CircularProgressIndicator(),
+                ),
             ],
           ),
         ),
@@ -142,7 +154,7 @@ class _CameraDetailsState extends State<CameraDetails> {
 
   Widget _buildSectionTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.only(bottom: 8.0, top: 16.0),
       child: Text(
         title,
         style: const TextStyle(
@@ -182,15 +194,16 @@ class _CameraDetailsState extends State<CameraDetails> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildDetailItem('Camera ID', camera['id']),
-        _buildDetailItem('Model', camera['model'] ?? 'Default Model'),
+        _buildDetailItem('Camera ID', camera['_id']),
         _buildDetailItem(
-            'Resolution', camera['resolution'] ?? 'Default Resolution'),
-        _buildDetailItem(
-            'Frame Rate', camera['frame_rate'] ?? 'Default Frame Rate'),
+            'Model', camera['model'].toString() ?? 'Default Model'),
+        _buildDetailItem('Resolution', camera['resolution'].toString()),
+        _buildDetailItem('Frame Rate',
+            camera['frameRate'].toString() ?? 'Default Frame Rate'),
         _buildDetailItem('Visibility Range',
-            camera['visibility_range'] ?? 'Default Visibility Range'),
-        _buildDetailItem('Location', camera['location'] ?? 'Default Location'),
+            camera['visibilityRange'].toString() ?? 'Default Visibility Range'),
+        _buildDetailItem(
+            'Location', camera['location'].toString() ?? 'Default Location'),
       ],
     );
   }
@@ -225,7 +238,11 @@ class _CameraDetailsState extends State<CameraDetails> {
       children: [
         ElevatedButton(
           onPressed: () {
-            playLiveFootage(videoUrl);
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => VideoPlayerPage(videoUrl),
+              ),
+            );
           },
           child: const Text('View Live Footage'),
         ),
